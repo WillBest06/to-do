@@ -1,4 +1,4 @@
 import "./styles.css";
-import { greeting } from "./greeting.js";
+import UI from "./ui.js";
 
-console.log(greeting);
+document.addEventListener("DOMContentLoaded", () => UI.initialise());

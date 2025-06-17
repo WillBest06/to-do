@@ -3,7 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>To-do</title>
+    <script defer src="index.js"></script>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
   </head>
-  <body></body>
+  <body>
+    <header>
+      <h1>To-do</h1>
+    </header>
+
+    <aside class="project-sidebar">
+      <h2>Projects</h2>
+      <div id="projects-list"></div>
+      <button id="new-project-create">+ New project</button>
+      <div class="new-project-dialog hidden" id="new-project-dialog">
+        <input type="text" name="new-project-name" id="new-project-name" />
+        <div id="new-project-dialog-actions">
+          <button id="new-project-save">Done</button>
+          <button id="new-project-cancel">Cancel</button>
+        </div>
+      </div>
+    </aside>
+
+    <main>
+      <h2>Lists</h2>
+    </main>
+  </body>
 </html>
