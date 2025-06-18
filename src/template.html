@@ -20,7 +20,12 @@
       <div id="projects-list"></div>
       <button id="new-project-create">+ New project</button>
       <div class="new-project-dialog hidden" id="new-project-dialog">
-        <input type="text" name="new-project-name" id="new-project-name" />
+        <input
+          type="text"
+          name="new-project-name"
+          id="new-project-name"
+          placeholder="Project name"
+        />
         <div id="new-project-dialog-actions">
           <button id="new-project-save">Done</button>
           <button id="new-project-cancel">Cancel</button>
@@ -29,7 +34,30 @@
     </aside>
 
     <main>
-      <h2>Lists</h2>
+      <section class="project-container">
+        <h2 class="project-title">Select a project to view tasks</h2>
+        <section class="task-list"></section>
+        <button class="new-task-create hidden">+ New task</button>
+        <div class="new-task-dialog hidden">
+          <input
+            type="text"
+            name="new-task-name"
+            id="new-task-name"
+            placeholder="Task name"
+          />
+          <input
+            type="text"
+            name="new-task-desc"
+            id="new-task-desc"
+            placeholder="Description"
+          />
+          <input type="date" name="new-task-date" id="new-task-due-date" />
+          <div class="new-task-dialog-actions">
+            <button class="new-task-save">Done</button>
+            <button class="new-task-cancel">Cancel</button>
+          </div>
+        </div>
+      </section>
     </main>
   </body>
 </html>
