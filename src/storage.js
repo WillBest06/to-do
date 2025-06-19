@@ -22,11 +22,23 @@ class Storage {
     return project[0];
   }
 
-  static saveTask(task, projectID) {
+  static saveTask(projectID, task) {
     let projects = JSON.parse(localStorage.getItem("projects"));
     projects.forEach((project) => {
       if (project._id === projectID) {
         project._taskList.push(task);
+      }
+    });
+    localStorage.setItem("projects", JSON.stringify(projects));
+  }
+
+  static deleteTask(projectID, taskID) {
+    let projects = JSON.parse(localStorage.getItem("projects"));
+    projects.forEach((project) => {
+      if (project._id === projectID) {
+        project._taskList = project._taskList.filter(
+          (task) => task._id !== taskID
+        );
       }
     });
     localStorage.setItem("projects", JSON.stringify(projects));

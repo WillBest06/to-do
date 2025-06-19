@@ -63,9 +63,19 @@ class App {
     const taskDueDate = document.querySelector("#new-task-due-date").value;
     const newTask = new Task(taskName, taskDesc, taskDueDate);
 
-    Storage.saveTask(newTask, projectID);
+    Storage.saveTask(projectID, newTask);
     UI.saveNewTask();
     UI.renderProject(Storage.getProject(projectID));
+  }
+
+  static handleTaskDelete(projectID, taskID) {
+    Storage.deleteTask(projectID, taskID);
+    UI.renderProject(Storage.getProject(projectID));
+  }
+
+  static handleTaskCompletion(e) {
+    const task = e.target.parentElement.parentElement;
+    UI.toggleTaskCompletion(task);
   }
 
   static addEventListeners() {
@@ -92,7 +102,7 @@ class App {
     const createNewTaskBTN = document.querySelector(".new-task-create");
     createNewTaskBTN.addEventListener("click", () => UI.createNewTask());
 
-    // save a new project
+    // save a new task
     const saveNewTaskBTN = document.querySelector(".new-task-save");
     saveNewTaskBTN.addEventListener("click", () =>
       this.handleTaskSave(
@@ -100,9 +110,28 @@ class App {
       )
     );
 
-    // cancel a new project
+    // cancel a new task
     const cancelNewTaskBTN = document.querySelector(".new-task-cancel");
     cancelNewTaskBTN.addEventListener("click", () => UI.cancelNewTask());
+
+    // task deletion
+    const taskListElement = document.querySelector(".task-list");
+    taskListElement.addEventListener("click", (e) => {
+      if (e.target.classList.contains("material-icons")) {
+        const projID = document
+          .querySelector(".project-title")
+          .getAttribute("project-id");
+
+        const taskID = e.target.parentElement.getAttribute("task-id");
+
+        this.handleTaskDelete(projID, taskID);
+      }
+    });
+    taskListElement.addEventListener("click", (e) => {
+      if (e.target.classList.contains("task-complete")) {
+        this.handleTaskCompletion(e);
+      }
+    });
   }
 }
 

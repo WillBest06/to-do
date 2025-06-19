@@ -1,4 +1,5 @@
 import "./styles.css";
+import Task from "./task";
 
 class UI {
   static renderSidebar(projects) {
@@ -38,20 +39,34 @@ class UI {
     project._taskList.forEach((task) => {
       const taskElement = document.createElement("article");
       taskElement.classList.add("task");
-      const taskTitle = document.createElement("h3");
-      taskTitle.textContent = task._title;
+      taskElement.setAttribute("task-id", task._id);
+
+      const taskLeftSide = document.createElement("div");
+      taskLeftSide.classList.add("task-element-left-side");
+
+      const taskCheckOff = document.createElement("input");
+      taskCheckOff.type = "checkbox";
+      taskCheckOff.classList.add("task-complete");
 
       const taskInfo = document.createElement("div");
       taskInfo.classList.add("task-info");
+      const taskTitle = document.createElement("h3");
+      taskTitle.textContent = task._title;
       const taskDesc = document.createElement("p");
       taskDesc.textContent = task._description;
-      const taskDueDate = document.createElement("p");
+      const taskDueDate = document.createElement("em");
       taskDueDate.textContent = task._dueDate;
+      const deleteButton = document.createElement("i");
+      deleteButton.classList.add("material-icons");
+      deleteButton.textContent = "delete";
+      taskInfo.appendChild(taskTitle);
       taskInfo.appendChild(taskDesc);
       taskInfo.appendChild(taskDueDate);
 
-      taskElement.appendChild(taskTitle);
-      taskElement.appendChild(taskInfo);
+      taskLeftSide.appendChild(taskCheckOff);
+      taskLeftSide.appendChild(taskInfo);
+      taskElement.appendChild(taskLeftSide);
+      taskElement.appendChild(deleteButton);
 
       taskListElement.appendChild(taskElement);
     });
@@ -113,6 +128,10 @@ class UI {
     document.querySelector("#new-task-desc").value = null;
     document.querySelector("#new-task-due-date").value = null;
     this.toggleNewTaskDialog();
+  }
+
+  static toggleTaskCompletion(taskElement) {
+    taskElement.classList.toggle("task-complete");
   }
 }
 

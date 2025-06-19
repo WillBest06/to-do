@@ -46,10 +46,20 @@ button:hover {
   cursor: pointer;
 }
 
-input {
+input[type="text"],
+input[type="date"] {
   font-size: 1rem;
   height: 2rem;
-  width: 100%;
+  max-width: 100%;
+}
+
+input[type="checkbox"] {
+  width: 2rem;
+  height: 2rem;
+}
+
+input[type="checkbox"]:hover {
+  cursor: pointer;
 }
 
 .hidden {
@@ -75,8 +85,9 @@ input {
   outline: 1px solid gray;
 }
 
-.sidebar-project > i:hover {
+i:hover {
   color: red;
+  cursor: pointer;
 }
 
 #new-project-create {
@@ -122,7 +133,8 @@ input {
 
 .task {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   gap: 0.5rem;
   outline: 1px solid gray;
   padding: 1rem;
@@ -130,10 +142,16 @@ input {
   max-width: 100%;
 }
 
+.task-element-left-side {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
 .task-info {
   display: flex;
-  justify-content: space-between;
-  gap: 4rem;
+  flex-direction: column;
+  gap: 0.5rem;
   line-height: 1.4;
 }
 
@@ -162,4 +180,8 @@ input {
   flex: 1;
   font-weight: bold;
   font-size: 1.2rem;
+}
+
+.task-complete {
+  text-decoration: line-through;
 }
